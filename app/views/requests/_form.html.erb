@@ -1,0 +1,49 @@
+<%= form_for(@request) do |f| %>
+  <% if @request.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@request.errors.count, "error") %> prohibited this request from being saved:</h2>
+
+      <ul>
+      <% @request.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="hidden">
+    <%= f.label :user_id %><br />
+    <% if session[:user_id] %>
+    <%= f.text_field :user_id, :value => session[:user_id] %>
+    <% else %>
+      <%= f.text_field :user_id, :value => "4" %>
+    <% end %>
+  </div>
+  <div class="field">
+    <%= f.label :department_id, 'Место, где несчастие произошло' %><br />
+    <%= f.select :department_id, options_for_select= Department.all.collect {|p| [p.name, p.id] }, {:include_blank => ''} %>
+  </div>
+  <div class="field">
+    <%= f.label :description, 'Краткий сказ о беде, с девайсом приключившейся' %><br />
+    <%= f.text_area :description, :cols => 60, :rows => 10 %>
+  </div>
+  <div class="field">
+    <%= f.label :comment, 'Особые вразумления, мастеру необходимые' %><br />
+    <%= f.text_area :comment, :cols => 60, :rows => 5 %>
+  </div>
+  <div class="hidden">
+    <%= f.label :status_id %><br />
+    <%= f.select :status_id, options_for_select= Status.all.collect {|p| [p.status_name, p.id] }, {:include_blank => ''} %>
+  </div>
+  <div class="hidden">
+    <%= f.label :priority_id %><br />
+    <%= f.select :priority_id, options_for_select= Priority.all.collect {|p| [p.name, p.id] }, {:include_blank => ''} %>
+  </div>
+  <div class="hidden">
+    <%= f.label :master_id, 'Прозвище мастера' %><br />
+    <%= f.select :master_id, options_for_select= User.order("last_name").select("first_name, last_name").find_all_by_role_id([1,2]).collect {|p| [p.first_name + " " + p.last_name, p.id] }, {:include_blank => ''} %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Послать мольбу о помощи', :class => "button" %>
+  </div>
+<% end %>

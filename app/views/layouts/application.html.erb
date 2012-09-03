@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<%= stylesheet_link_tag 'application', :media => 'screen' %>
+<meta charset="UTF-8" />
+<title>ISMA - Support</title>
+<%= csrf_meta_tag %>
+</head>
+<body class=<%= controller.controller_name %>>
+<header>
+<%= image_tag("isma64.png", :size => "48x48", :alt => "Logo", :class => "img-left", :title => "ИвГМА") %>
+<h1>Техподдержка ИвГМА - мы лечим компьютеры</h1>
+</header>
+<section id="content">
+<%= yield %>
+</section>
+<footer>
+<address>Наш адрес: г. Иваново, пр-т Ф. Энгельса, 8, 2 эт. Тел. (4932) 30-06-70</address>
+</footer>
+<nav>
+<%= link_to(index_path) do %>
+<div class=nav><p <%= if controller.controller_name=="requests" then "class=current" end %>><%= image_tag("bookmark-new.png", :size=>"22x22", :alt=>"Подать заявку", :title => "Подать заявку") %><span class=invis>&nbspПодать заявку</span></div>
+<% end %>
+<%= link_to() do %>
+<div class=nav><p><%= image_tag("meeting-observer.png", :size=>"22x22", :alt=>"Статус заявки", :title => "Статус заявки") %><span class=invis>&nbspСтатус заявки</span></div>
+<% end %>
+<%= link_to(posts_path) do %>
+<div class=nav><p <%= if current_page?(:controller => "posts") then "class=current" end %>><%= image_tag("news-subscribe.png", :size=>"22x22", :alt=>"Новости", :title => "Новости") %><span class=invis>&nbspНовости</span></div>
+<% end %>
+<%= link_to(new_feedback_path) do %>
+<div class=nav><p <%= if current_page?(:controller => "feedbacks", :action => "new") then "class=current" end %>><%= image_tag("mail-mark-unread-new.png", :size=>"22x22", :alt=>"Связаться с нами", :title => "Связаться с нами") %><span class=invis>&nbspСвязаться с нами</span></div>
+<% end %>
+<% if session[:user_id] %>
+  <%= link_to(logout_path) do %>
+    <div class=signin><p <%= if controller.controller_name=="sessions" then "class=current" end %>><%= image_tag("dialog-password.png", :size=>"22x22", :alt=>"Войти") %><span class=invis>&nbspВыйти</span></div>
+  <% end %>
+<% else %>
+  <%= link_to(login_path) do %>
+    <div class=signin><p <%= if controller.controller_name=="sessions" then "class=current" end %>><%= image_tag("dialog-password.png", :size=>"22x22", :alt=>"Войти") %><span class=invis>&nbspВойти</span></div>
+  <% end %>
+<% end %>
+<% if session[:user_id] %>
+  <div class=signin><p class=wellcom>Добро пожаловать,&nbsp <%= User.find_by_id(session[:user_id]).first_name  %> </div>
+<% end %>
+</nav>
+</body>
+</html>

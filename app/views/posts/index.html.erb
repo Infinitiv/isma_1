@@ -1,0 +1,26 @@
+<div id=posts><h2><span class="headline2">Новости<span></h2>
+  <% if session[:user_id] %>
+    <%= link_to(new_post_path) do %>
+      <div><p><%= image_tag("address-book-new.png", :size=>"22x22", :alt=>"Добавить") %><span class=invis>&nbspДобавить</span></div>
+    <% end %>
+  <% end %>
+<% @posts.each do |post| %>
+  <div class=post>
+    <h3 class=posttitle>Заголовок</h3>
+    <p><%= post.post %>
+    <p class=postsubscript>Автор:&nbsp
+    <%= User.find_by_id(post.user_id).first_name %>&nbsp;<%= User.find(post.user_id).last_name %>
+    &nbsp<span class=normal>|</span>&nbspНаписано:&nbsp
+    <%= time_tag post.created_at %>
+    <% if post.updated_at>post.created_at %>
+    &nbsp<span class=normal>|</span>&nbspОбновлено:&nbsp
+    <%= time_tag post.updated_at %>
+    <% end %>
+  <% if session[:user_id] %>
+  <p class=postman><%= link_to 'Правка', edit_post_path(post) %>
+  <%= link_to 'Удаление', post, confirm: 'Точно?', method: :delete %>
+  <% end %>
+  </div>
+
+<% end %>
+</div>
