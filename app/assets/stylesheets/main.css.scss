@@ -100,7 +100,7 @@ footer {
 h2
 {
   font-size:1em;
-  margin-top:-1.75em;
+  margin: 0;
   width:auto;
 }
 .headline2
@@ -132,6 +132,7 @@ table.stat
   background-color: rgb(255, 255, 255);
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
   width:100%;
+  float: none;
 }
 .invite {
   /* Display & Box Model */
@@ -188,10 +189,13 @@ select, input, textarea, label {
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
   padding: 0.5em 1em;
   margin-bottom: 1em;
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
 }
-#posts
-{
-  padding: 0 1em;
+#posts {
+  width: 100%;
+  float: none;
 }
 .postman {
 
@@ -218,6 +222,7 @@ header
 }
 #content
 {
+  position: absolute;
   margin-left: 5%;
   margin-right: 5%;
   width: 90%;
@@ -237,8 +242,19 @@ footer {
 }
 #request
 {
-  margin:auto;
-  width:50%;
+  margin-left: 3%;
+  width: 45%;
+  float: left;
+}
+#posts {
+  margin-right: 3%;
+  margin-left: 0;
+  float: right;
+  width: 45%;
+}
+.post {
+  margin-left: 0;
+  margin-right: 0;
 }
 h1
 {
