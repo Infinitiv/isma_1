@@ -233,7 +233,6 @@ header
 }
 #content
 {
-  position: absolute;
   margin-left: 5%;
   margin-right: 5%;
   width: 90%;
@@ -274,5 +273,11 @@ h1
 }
 .invis {
   display: inline;
+}
+.clear {
+    clear: both;
+    float: none;
+    height: 0;
+    font-size: 0;
 }
 }
