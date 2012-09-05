@@ -14,22 +14,45 @@
   <div class="hidden">
     <%= f.label :user_id %><br />
     <% if session[:user_id] %>
-    <%= f.text_field :user_id, :value => session[:user_id] %>
+      <%= f.text_field :user_id, :value => session[:user_id] %>
     <% else %>
-      <%= f.text_field :user_id, :value => "4" %>
+      <%= f.text_field :user_id, :value => @guest_id %>
     <% end %>
   </div>
-  <div class="field">
-    <%= f.label :department_id, 'Место, где несчастие произошло' %><br />
+  <div class=informer>
+    <%= f.label 'Кто Вы?' %><br />
+    <% if session[:user_id] %>
+      <%= f.text_field :informer, :value => @informer %>
+    <% else %>
+      <%= f.text_field :informer, :placeholder => "Ваше имя" %>
+    <% end %>
+  </div>
+  <div class=field>
+    <%= f.label :department_id, 'Откуда Вы?' %><br />
     <%= f.select :department_id, options_for_select= Department.all.collect {|p| [p.name, p.id] }, {:include_blank => ''} %>
   </div>
   <div class="field">
-    <%= f.label :description, 'Краткий сказ о беде, с девайсом приключившейся' %><br />
+    <%= f.label :description, 'Чего Вы хотите?' %><br />
     <%= f.text_area :description, :cols => 60, :rows => 10 %>
   </div>
   <div class="field">
-    <%= f.label :comment, 'Особые вразумления, мастеру необходимые' %><br />
+    <%= f.label :comment, 'Что нам еще важно знать?' %><br />
     <%= f.text_area :comment, :cols => 60, :rows => 5 %>
+  </div>
+  <div class=contactmail>
+    <%= f.label 'Как с Вами связаться' %><br />
+    <% if session[:user_id] %>
+      <%= f.email_field :mail, :value => @user_email%>
+    <% else %>
+      <%= f.email_field :mail, :placeholder => "Электронная почта" %>
+    <% end %>
+  </div>
+  <div class=contactphone>
+    <% if session[:user_id] %>
+      <%= f.telephone_field :phone, :value => @user_phone %>
+    <% else %>
+      <%= f.telephone_field :phone, :placeholder => "Номер телефона" %>
+    <% end %>   
   </div>
   <div class="hidden">
     <%= f.label :status_id %><br />

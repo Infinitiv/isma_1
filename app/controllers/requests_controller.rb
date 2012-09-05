@@ -25,7 +25,17 @@ class RequestsController < ApplicationController
   # GET /requests/new.json
   def new
     @request = Request.new
-    @posts = Post.all
+    @posts = Post.order("updated_at DESC").limit(5)
+    @guest_id = Role.find_by_name("guest").id
+    if session[:user_id]
+      @user_email = User.find(session[:user_id]).email
+    end
+    if session[:user_id]
+      @user_phone = User.find(session[:user_id]).phone
+    end
+    if session[:user_id]
+      @informer = User.find(session[:user_id]).first_name + " " + User.find(session[:user_id]).last_name
+    end
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @request }

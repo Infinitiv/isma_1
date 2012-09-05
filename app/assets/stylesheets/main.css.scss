@@ -171,13 +171,16 @@ select, input, textarea, label {
 .hidden {
   display: none; 
 }
-.button .actions {
+.button, .actions {
   height: 2em;
 }
 .postsubscript {
-  font-size: 0.5em;
+  font-size: 0.6em;
   font-style: italic;
   color: rgb(105, 105, 105);
+  width: 96%;
+  margin-left: auto;
+  margin-right: auto;
 }
 .post {
   color: rgb(54, 54, 54);
@@ -187,7 +190,6 @@ select, input, textarea, label {
   border-radius: 5px;
   background-color: rgb(255, 255, 255);
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
-  padding: 0.5em 1em;
   margin-bottom: 1em;
   width: 90%;
   margin-left: 5%;
@@ -199,6 +201,15 @@ select, input, textarea, label {
 }
 .postman {
 
+}
+.posttitle, .posttext {
+  width: 96%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: justify;
+}
+.posttitle {
+  margin-top: 2%;
 }
 .normal {
   font-style: normal;
@@ -255,6 +266,7 @@ footer {
 .post {
   margin-left: 0;
   margin-right: 0;
+  width: 100%;
 }
 h1
 {

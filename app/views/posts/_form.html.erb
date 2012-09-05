@@ -20,8 +20,12 @@
     <%= f.select :department_id, options_for_select= Department.all.collect {|p| [p.name, p.id] }, {:include_blank => ''} %>
   </div>
   <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
     <%= f.label :post %><br />
-    <%= f.text_field :post %>
+    <%= f.text_area :post %>
   </div>
   <div class="actions">
     <%= f.submit %>
