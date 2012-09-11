@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  :attr_accessible
   # GET /users
   # GET /users.json
   def index

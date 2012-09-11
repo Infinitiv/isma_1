@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120905134909) do
+ActiveRecord::Schema.define(:version => 20120710214527) do
 
   create_table "comments", :force => true do |t|
     t.integer  "request_id"
@@ -38,10 +38,9 @@ ActiveRecord::Schema.define(:version => 20120905134909) do
   create_table "posts", :force => true do |t|
     t.integer  "user_id"
     t.integer  "department_id"
-    t.text     "post",          :limit => 255
+    t.string   "post"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "title"
   end
 
   create_table "priorities", :force => true do |t|
@@ -61,9 +60,6 @@ ActiveRecord::Schema.define(:version => 20120905134909) do
     t.integer  "master_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "mail"
-    t.string   "phone"
-    t.string   "informer"
   end
 
   create_table "roles", :force => true do |t|
